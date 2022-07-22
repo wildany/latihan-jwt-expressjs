@@ -1,5 +1,5 @@
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJkYW5jdSIsImVtYWlsIjoiZW1haWxAZ21haWwuY29tIiwiaWF0IjoxNjU4NDc0NTI0LCJleHAiOjE2NTg0NzQ1NDR9.LDvipJjhhVCgtuwilvfCuFyWl780AkmNqe-rLS-0AtI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJkYW5jdSIsImVtYWlsIjoiZW1haWxAZ21haWwuY29tIiwiaWF0IjoxNjU4NDkxMjMxLCJleHAiOjE2NTg0OTEyNDZ9.IMiU_alkG3UU2Ssjkcy57JBvd4EtIXwY4exg0VMqB8o
 ###
 POST  http://localhost:3000/users
 Content-Type: application/json
@@ -19,3 +19,8 @@ Content-Type: application/json
     "email": "email@gmail.com",
     "password": "123456"
 }
+###
+GET  http://localhost:3000/token
+
+###
+DELETE http://localhost:3000/logout
