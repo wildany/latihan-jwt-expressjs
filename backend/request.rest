@@ -1,0 +1,21 @@
+GET http://localhost:3000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWUiOiJkYW5jdSIsImVtYWlsIjoiZW1haWxAZ21haWwuY29tIiwiaWF0IjoxNjU4NDc0NTI0LCJleHAiOjE2NTg0NzQ1NDR9.LDvipJjhhVCgtuwilvfCuFyWl780AkmNqe-rLS-0AtI
+###
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name" : "Wildan",
+    "email": "email@gmail.com",
+    "password": "123456",
+    "confirmPassword": "123456"
+}
+
+###
+POST  http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "email@gmail.com",
+    "password": "123456"
+}

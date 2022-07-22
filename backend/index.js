@@ -3,7 +3,6 @@ import db from "./config/database.js";
 import router from "./route/routes.js";
 import dotenv from "dotenv";
 
-
 dotenv.config();
 const app = express();
 
@@ -19,5 +18,5 @@ app.use(express.json());
 app.use(router);
 
 app.listen(3000, () => {
-    console.info("server running at port 3000");
+    console.info(`server running at port 3000`);
 })

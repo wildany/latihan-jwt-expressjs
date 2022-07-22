@@ -2,11 +2,12 @@
 import users from "../models/usermodel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 export const getUsers = async (req, res) => {
     try {
-        const datausers = await users.findAll({
-            attributes: { id, name, email }
-        });
+        const datausers = await users.findAll(
+            { attributes: ['id', 'name', 'email'] }
+        );
         res.status(200).json(datausers);
     } catch (error) {
         console.log(error);
@@ -48,29 +49,40 @@ export const login = async (req, res) => {
         const userId = user[0].id;
         const name = user[0].name;
         const email = user[0].email;
-        const accessToken = jwt.sign({ userId, name, email }, `${process.env.ACCESSs_TOKEN_SECRET}`, {
+        const accessToken = jwt.sign({ userId, name, email }, process.env.ACCESS_TOKEN_SECRET, {
             expiresIn: '20s'
         })
 
-        const refreshToken = jwt.sign({ userId, name, email }, `${process.env.REFRESH_TOKEN_SECRET}`, {
+        const refreshToken = jwt.sign({ userId, name, email }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
         })
 
-        await users.update({ refresh_token: refreshToken }, {
-            where: {
-                id: userId
-            }
-        });
+        const updateToken = await users.update(
+            {
+                refresh_token: refreshToken
+            },
+            {
+                where: {
+                    id: userId,
+                },
+            });
+
+        if (updateToken) {
+            console.log("token berhasil diupdate");
+        }
+
         res.cookie('refreshToken', refreshToken, {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000
             // ,secure: true (untuk https)
         });
         // res.json(user);
+        // res.json(userId);
         res.json({ accessToken });
 
     } catch (error) {
-        res.status(404).json({ msg: "Email tidak ditemukan" });
+        // res.status(404).json({ msg: "Email tidak ditemukan" });
+        console.log(error);
     }
 }
 
