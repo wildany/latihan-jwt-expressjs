@@ -6,4 +6,5 @@ const db = new Sequelize('auth_db', 'root', '', {
     dialect: 'mysql'
 })
 
+
 export default db
